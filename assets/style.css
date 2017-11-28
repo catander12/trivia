@@ -1,0 +1,16 @@
+body{
+
+		background: linear-gradient( #ff1400, #00beff, #002cff, #e200ff);
+		background-size: 1000% 1000%;
+
+}
+
+.title{
+	text-align: center;
+	font-size: 250%;
+};
+
+.questions{
+ text-align: center;
+ font-size: 200%;
+}
