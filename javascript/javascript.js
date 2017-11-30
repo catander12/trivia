@@ -36,7 +36,7 @@ $( document ).ready(function() {
 
 function didWin(){
 		if(count < 3){
-			chooseQ();
+			numba();
 		}
 		else if(count >= 3 && correct != 3){
 				$("#question").html("Better luck next time nerd");
@@ -61,21 +61,14 @@ function didWin(){
 
 }
 
-
+function numba(){
+		x = Math.floor(questions.length*Math.random());
+			console.log(x)
+			check();
+}
 
 
 function chooseQ(){		
-
-		x = Math.floor(questions.length*Math.random());
-		console.log(x)
-
-		if(check()){
-			
-				console.log("running again");
-				chooseQ();
-
-		}else{
-				console.log("running once")
 
 				$("#question").html(questions[x].question);
 				$("#op1").html(questions[x].options[0]);
@@ -84,40 +77,34 @@ function chooseQ(){
 
 				done.push(x);
 				count++;
-		}
 }
 
 
-//Ive got some questions 
+//checks to see if function numba() chose a repeating question. returns true is it repeats, false if not.
 
 function check(){
-
-		for(i=0;i<done.length;i++){
-			if(x == done[x]){
-				console.log("found match")
-				return true
-			}
-			console.log("checking");
-			console.log(done);
-
+	var id = false;
+//checks every index of the array and sets id to true if theres a match
+	for(i=0;i<done.length;i++){
+		if(done[i] == x){
+			id = true;
+			console.log("found dupe");
 		}
-		//console.log(done);  when this is uncommented it no longer checks correctly, this also doesnt work if the previous console(done) is no longer there
-		console.log("did not find match");
-		return false
+	}
+//checks to see if there was a match, if there was it rechooses if not it continues with the game
+	if(id == true){
+		numba();
+	}else{
+		chooseQ();
+	}
 
 }
 
-
-
-
-function initiate(){
-	chooseQ()
-}
 
 
 
 //code
-	initiate();
+	didWin();
 
 	
 
